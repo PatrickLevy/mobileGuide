@@ -1,0 +1,83 @@
+<template name="viewPhoto">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Displaying Photos and Maps</h1>
+	  		</div>
+	  		Below is the template helper for displaying a random photo from the collection.  As well as displaying the photo, this helper function will find the geolocation information of where the photo was taken.
+	  		<p></p>
+<pre>
+<code>
+var randPhoto;
+var latitude;
+var longitude;
+
+Template.viewPictures.helpers( {
+  'photo': function () {
+  
+    //Set current photo to be displayed
+    var numPhotos = Photos.find({}).count();
+    var randPhotoIndex = _.random(0, numPhotos - 1);
+    randPhoto = 'photo' + randPhotoIndex;
+    Session.set('currentPhoto', localStorage.getItem(randPhoto));
+
+    //Get geolocation of current photo for google map
+    var curPhoto = Photos.find({"photoName": randPhoto}).fetch();
+    latitude = curPhoto[0].photolocation.latitude;
+    longitude = curPhoto[0].photolocation.longitude;
+    Session.set("latitude", latitude);
+    Session.set("longitude", longitude);
+		
+    return Session.get('currentPhoto');
+    },	
+});
+</code>
+</pre>
+
+			<div>Next we will implement the display of a google map based on the location of the photo that was taken.  We will first add the google maps package for meteor.
+	  		</div>
+	  		<code>
+	  			meteor add dburles:google-maps
+	  		</code>
+	  		<p></p>
+	  		<h4>Below are the functions for displaying the maps on the page.
+	  		</h4>
+<pre>
+<code>
+Meteor.startup(function() {  
+  GoogleMaps.load();
+});
+
+Template.map.helpers({  
+  mapOptions: function() {
+    if (GoogleMaps.loaded()) {
+      return {
+        center: new google.maps.LatLng(Session.get("latitude"), Session.get("longitude")),
+        zoom: 15
+      };
+    }
+  }
+});
+</code>
+</pre>
+
+	  		<p></p>
+	  		<a class="btn btn-primary" href="/accelerometer">Next Section</a>
+	  	</div>
+	  </div>
+
+
+	  
+	</body>
+</template>

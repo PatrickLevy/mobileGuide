@@ -1,0 +1,87 @@
+<template name="setup">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Setup</h1>
+	  		</div>
+	  	</div>
+
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+
+	  			<h4>There are a number of things that we need to install to get our development environment setup.</h4>  
+	  			<br>
+	  			<h4>Install Meteor</h4>
+					<code>curl https://install.meteor.com/ | sh</code>
+					
+	  			<br>
+	  			<br>
+	  			<h4>Create a new meteor project</h4>
+					<code>meteor create photoScramble</code>
+	  			<br>
+	  			<br>
+	  			<h4>Install basic Meteor packages for our project</h4>
+					<code>meteor add iron:router</code><br>
+    				<code>meteor add-platform android</code><br>
+    				<code>meteor add underscore</code><br>
+    				<code>meteor add twbs:bootstrap</code>	  			
+
+	  			<br>
+	  			<br>
+	  			<h4>Install Android SDK</h4>
+	  			This step can be quite challenging to get everything set up properly.  Meteor was recently updated to version 1.2 and no longer includes the tools necessary for building mobile apps.  Instead, these tools must be installed via the Android SDK.  You will probably be most successful if you follow the official documentation given on the Meteor site for installing these tools.
+	  			<br><a href="https://github.com/meteor/meteor/wiki/Mobile-Development-Install:-Android-on-Linux" target="_blank">Mobile Meteor Development on Linux</a>
+
+	  			<br>
+	  			<br>
+	  			<h4>Setup Basic Pages for App</h4>
+	  			Our application will have the following pages:
+	  				<ul>
+	  					<li>Home - This page will serve as a landing page for the app.</li>
+	  					<li>Take Picture - This page will allow the user to take a picture with the geolocation recorded.</li>
+	  					<li>View Pictures - This page will allow the user to view random pictures by utilizing the accelerometer.</li>
+	  				</ul>
+	  			
+	  			<br>
+	  			<a class="btn btn-primary" href="/camera">Next Section</a>
+	  		
+<!-- {{#markdown}}
+```snippet-homeTemplate hljs html
+snippet-homeTemplate
+```
+{{/markdown}} -->
+
+	  			<!-- <pre>
+	  				<code>
+						
+
+
+
+
+	  				</code>
+	  		
+	  			</pre> -->
+
+
+	  		</div>
+	  	</div>
+
+
+
+
+	  </div>
+	  
+	</body>
+</template>

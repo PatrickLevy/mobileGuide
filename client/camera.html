@@ -1,0 +1,56 @@
+<template name="camera">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Camera</h1>
+	  			We are going to start adding functionality to our app now.  To incorporate the use of a mobile phone camera in a meteor app we will install the camera package.
+	  			<br>
+	  			<code>
+	  				meteor add mdg:camera
+	  			</code>
+	  			<p></p>
+	  			Create a simple template with a button for the user to push when they want to take a picture.  We will store information about the camera in two places.  We will store the actual photo in localStorage.  We will store information about the photo in our mongo database.
+	  		</div>
+
+	  		<br>
+
+<pre>
+<code>
+Template.takePhoto.events({
+  'click .capture': function(){
+		
+    MeteorCamera.getPicture({width: 300, height: 300}, function(error, data){
+      if(error){
+        console.log("error taking photo");
+      }
+      else {
+        var photosCount = Photos.find({}).count();
+        var photoName = "photo" + (photosCount);
+        localStorage.setItem(photoName, data);
+        Photos.insert({photoName: photoName, photoNumber: photosCount});	 
+      }
+    });
+  }
+});
+</code>
+</pre>
+
+	  		<a class="btn btn-primary" href="/geolocation">Next Section</a>
+	  	</div>
+	  </div>
+
+
+	  
+	</body>
+</template>

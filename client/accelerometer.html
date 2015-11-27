@@ -1,0 +1,50 @@
+<template name="accelerometer">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Accelerometer</h1>
+	  		</div>
+	  		<div>
+	  		The last feature that we will implement is the use of the accelerometer to randomly display a new photo when the phone is shaken.  We will start by adding yet another package to our meteor project.
+	  		</div>
+	  		<code>
+	  		meteor add shake:shake
+	  		</code>
+			<p></p>
+			We will add a meteor startup function to watch for shake events.  When a shake event occurs we will reload the current page, causing a new random picture to be displayed.
+<pre>
+<code>
+Meteor.startup(function () {
+  if (shake && typeof shake.startWatch === 'function') {
+    shake.startWatch(onShake, 15); //sensitivitiy is set to 15
+  } else {
+    alert('error - shake not supported');
+  }
+});
+
+onShake = _.debounce(function onShake() {
+  location.reload();
+}, 750, true);  // fire the shake as soon as it occurs, but not again if less than 750ms have passed; 
+</code>
+</pre>
+
+	  		<p></p>
+	  		<a class="btn btn-primary" href="/finishedApp">Next Section</a>
+	  	</div>
+	  </div>
+
+
+	  
+	</body>
+</template>

@@ -1,0 +1,52 @@
+<template name="geolocation">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Geolocation</h1>
+	  			<p></p>
+	  			To utilize geolocation information in our project we do not need to add any new meteor packages.  We can use the built in HTML5/JavaScript functionality.  We will now update our takePhoto events handler to start by getting the current geolocation data.  
+	  			<p></p>Once the location is determined, the position will be passed along through a callback function.  The callback function will take the picture data along with the position data and insert the appropriate records into localStorage and the mongo database.
+	  		</div>
+<pre>
+<code>
+Template.takePhoto.events({
+  'click .capture': function(){
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+		
+      MeteorCamera.getPicture({width: 300, height: 300}, function(error, data){
+        if(error){
+          console.log("error taking photo");
+        }
+        else {
+          var photosCount = Photos.find({}).count();
+          var photoName = "photo" + (photosCount);
+          localStorage.setItem(photoName, data);
+          Photos.insert({photoName: photoName, photoNumber: photosCount, photolocation: {latitude: position.coords.latitude, 
+                         longitude: position.coords.longitude}});	 
+        }
+      });
+    });
+  }
+});
+</code>
+</pre>
+	  		<a class="btn btn-primary" href="/viewPhoto">Next Section</a>
+	  	</div>
+	  </div>
+	  
+
+
+	</body>
+</template>

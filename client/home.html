@@ -1,0 +1,63 @@
+<template name="home">
+	<head>
+	  <title>mobileGuide</title>
+	</head>
+
+	<body>
+
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			{{> navigation}}
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h1>Building Android Apps with MeteorJS</h1>
+	  		</div>
+	  	</div>
+
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h4>Welcome to my guide for building cloud and mobile apps using MeteorJS.  I am going to walk you through the basic process that I used to make a simple photo app.</h4>  
+	  			<br>
+	  			<h4>The app will leverage the following mobile features:</h4>
+	  				<ul>
+	  					<li>Uses a mobile style bootstrap <b>menu.</b></li>
+	  					<li>Allows the user to use the <b>camera</b> to take photos that are stored on the device using <b>localStorage</b>.</li>
+	  					<li>Utillizes <b>GPS</b> to record the geolocation where the photo was taken.</li>
+	  					<li>Provides a <b>photogallery</b> for the user to view the pictures that they've taken.</li>
+	  					<li>Utilizes the <b>accelerometer</b> so that when the user shakes the device a randomly selected photo is displayed.</li>
+	  				</ul>
+
+	  			<br>
+	  			<h4>Why use Meteor for mobile development?</h4>
+	  				<ul>
+	  					<li>Meteor provides a powerful framework for rapid development.</li>
+	  					<li>Meteor allows a developer to run code that will produce an application for the cloud, android, and ios.</li>
+	  					<li>Meteor has a large community with many available packages to add functionality without reinventing the wheel.</li>
+	  				</ul>
+
+	  			<br>
+	  			<h4>What should you already know before starting?</h4>
+	  				<ul>
+	  					<li>You should already be familiar with the basics of Meteor.  If you are not, check out the links below:</li>
+	  						<ul>
+	  							<li><a href="http://meteortips.com/first-meteor-tutorial/" target="_blank">Your First Meteor Application</a></li>
+	  							<li><a href="https://www.discovermeteor.com/" target="_blank">Discover Meteor</a></li>
+	  							<li><a href="https://www.meteor.com/" target="_blank">Meteor Official Site</a></li>
+	  						</ul>
+	  				</ul>
+	  			<br>
+	  			<a class="btn btn-primary" href="/setup">Next Section</a>
+
+	  		</div>
+	  	</div>
+
+
+
+	  </div>
+	  
+	</body>
+</template>
